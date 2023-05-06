@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% load humanize %}
+{% block content %}
+
+
+
+
+
+<div class="text-center">
+    <h1>Stock Price</h1>
+</div>
+<hr>
+<form method="post" action="{% url 'base:index'%}">
+    {% csrf_token %}
+    <input class="w-50 mt-3 pt-3 pb-1" name="search" type="search" placeholder="Search items by name" style="padding:20sp 25sp;">&nbsp;<input type="submit"  value="Search" class="btn btn-success">
+    <a href="{% url 'base:index'%}" class="btn btn-secondary">Reset</a>
+
+
+</form>
+<br>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Price</th>
+      <th scope="col">brand</th>
+
+      <th scope="col">Available</th>
+      <th scope="col">Updated</th>
+      <th scope="col">Created At</th>
+      <th scope="col">NO</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% if data %}
+	{% for i in data %}
+		<tr>
+			<td>{{ i.name }}</td>
+			<td>{{ i.quantity|intcomma }}</td>
+			<td>&#8358; {{ i.price|intcomma }}</td>
+			<td>{{ i.brand }}</td>
+
+			<td>{{ i.available }}</td>
+             <td>{{ i.updated|timesince }} ago</td>
+			<td>{{ i.created_at  }}</td>
+
+
+			<td><a href="{% url 'base:record' i.id %}">{{ forloop.counter }}</a></td>
+		</tr>
+	{% endfor %}
+
+{% endif %}
+
+
+	  </tbody>
+	</table>
+
+
+
+
+{% endblock %}

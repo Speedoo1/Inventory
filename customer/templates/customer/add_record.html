@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <div class="text-center">
+       <h1>Add New Customer</h1>
+    </div>
+ <hr>
+<br/>
+
+
+<form method="POST" action="{% url 'customer:add-customer'%}">
+    {% csrf_token %}
+     <div class="mb-3">
+    <input type="text" class="form-control" name="name", placeholder="Enter First Name" required>
+
+  </div><br>
+     <div class="mb-3">
+    <input type="text" class="form-control" name="last_name", placeholder="Enter Last Name" required>
+
+  </div><br>
+
+     <div class="mb-3">
+    <input type="email" class="form-control" name="email", placeholder="Enter Email Address" required>
+
+  </div><br/>
+
+     <div class="mb-3">
+    <input type="text" class="form-control" name="zipcode", placeholder="Enter zipcode" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+    <input type="text" class="form-control" name="city", placeholder="Enter City Name" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+    <input type="text" class="form-control" name="number", placeholder="Enter phone number" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+    <input type="text" class="form-control" name="address", placeholder="Enter Home Address" required>
+
+  </div><br/>
+
+     <div class="mb-3">
+    <input type="text" class="form-control" name="state", placeholder="Enter State of origin" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+         <h5>Gender</h5>
+    <select name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+
+    </select>
+
+  </div><br/>
+  <button type="submit" class="btn btn-secondary">Add Record</button>
+   <a href="{% url 'sales:index' %}" class="btn btn-secondary">Back</a>
+
+</form>
+
+</div>
+
+{% endblock %}
+Footer

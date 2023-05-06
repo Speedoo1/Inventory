@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load humanize %}
+
+
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{ data.name }}
+		</strong>
+  </div>
+  <div class="card-body">
+
+
+
+<p class="card-text">
+<strong>Quantity: </strong>{{data.quantity}}</p>
+
+<p class="card-text">
+<strong>Price: </strong>&#8358; {{ data.price|intcomma}}
+</p>
+
+<p class="card-text">
+<strong>Created: </strong>{{data.created_at}}</p>
+
+<p class="card-text">
+<strong>Brand: </strong>{{ data.brand }}</p>
+
+<p class="card-text">
+<strong>Updated: </strong>{{ data.updated|timesince }}</p>
+
+<p class="card-text">
+<strong>Id: </strong>{{ data.id|intcomma }}</p>
+
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'base:index' %}" class="btn btn-secondary">Back</a>
+
+<a href="{% url 'base:delete' data.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'base:update' data.id %}" class="btn btn-secondary">Update Record</a>
+		
+
+{% endblock %}
+Footer

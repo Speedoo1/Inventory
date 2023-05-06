@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Add Record</h1>
+<br/>
+
+<form method="POST" action="{% url 'base:update' data.id %}">
+    {% csrf_token %}
+     <div class="mb-3">
+    <input type="text" class="form-control" value="{{data.name}}" name="stock", placeholder="Enter Stock Name" required>
+
+  </div><br>
+
+     <div class="mb-3">
+    <input type="number" class="form-control" value="{{data.quantity}}" name="Qty", placeholder="Enter Quantity" required>
+
+  </div><br/>
+
+     <div class="mb-3">
+    <input type="number" class="form-control" value="{{data.price}}" name="price", placeholder="Enter price" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+    <input type="text" class="form-control" name="brand", value="{{data.brand}}" placeholder="Enter Brand Name" required>
+
+  </div><br/>
+
+
+
+
+     <div class="mb-3">
+         <h5>Goods Available</h5>
+    <select name="available">
+        <option value="True">True</option>
+        <option value="False">False</option>
+    </select>
+
+  </div><br/>
+  <button type="submit" class="btn btn-secondary">Update Record</button>
+   <a href="{% url 'base:index' %}" class="btn btn-secondary">Back</a>
+
+</form>
+
+</div>
+
+{% endblock %}
+Footer

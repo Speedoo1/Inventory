@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load humanize %}
+
+
+<div class="text-center">
+    <h1>Customer Details</h1>
+</div>
+<div class="card">
+  <div class="card-header"><strong>
+    	{{ data.first_name }} {{data.last_name}}
+		</strong>
+  </div>
+  <div class="card-body">
+
+
+
+<p class="card-text">
+<strong>Email: </strong>{{data.email}}</p>
+
+<p class="card-text">
+<strong>Address: </strong>{{ data.address}}
+</p>
+      <p class="card-text">
+<strong>Phone number: </strong>{{ data.phone}}
+</p>
+      <p class="card-text">
+<strong>Gender: </strong>{{ data.gender}}
+</p>
+      <p class="card-text">
+<strong>State of Origin: </strong>{{ data.state}}
+</p>
+      <p class="card-text">
+<strong>Zipcode: </strong>{{ data.zipcode}}
+</p>
+
+<p class="card-text">
+<strong>Created: </strong>{{data.created_at}}</p>
+
+<p class="card-text">
+<strong>Brand: </strong>{{ data.brand }}</p>
+
+<p class="card-text">
+<strong>Updated: </strong>{{ data.updated|timesince }}</p>
+
+<p class="card-text">
+<strong>Id: </strong>{{ data.id|intcomma }}</p>
+
+    
+  </div>
+</div>
+
+<br/><br/>
+<a href="{% url 'sales:index' %}" class="btn btn-secondary">Back</a>
+
+<a href="{% url 'sales:delete' data.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'sales:update-info' data.id %}" class="btn btn-secondary">Update Record</a>
+<br/><br/>
+	<div class="text-center">
+        <h1>Goods Bought by {{data.first_name}} {{data.last_name}}</h1>
+
+    </div>
+<br>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Total-Price</th>
+      <th scope="col">Payment-Method</th>
+
+      <th scope="col">Brand</th>
+      <th scope="col">Updated</th>
+      <th scope="col">Created At</th>
+      <th scope="col">NO</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% if data %}
+
+		<tr>
+			<td>{{ i.name }}</td>
+			<td>{{ i.quantity|intcomma }}</td>
+			<td>&#8358; {{ i.total_price|intcomma }}</td>
+			<td>{{ i.Payment_mode }}</td>
+
+			<td>{{ i.brand }}</td>
+             <td>{{ i.updated|timesince }} ago</td>
+			<td>{{ i.created_at  }}</td>
+
+
+			<td><a href="">{{ forloop.counter }}</a></td>
+		</tr>
+
+
+{% endif %}
+
+
+	  </tbody>
+	</table>
+
+
+{% endblock %}

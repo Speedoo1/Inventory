@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load humanize %}
+{% block sales %}
+<a class="nav-link" href="{% url 'sales:add-record'%}">Add sales Record</a>
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>List of Customer</h1>
+</div>
+<hr>
+<!--<form method="post" action="{% url 'base:index'%}">-->
+<!--    {% csrf_token %}-->
+<!--    <input class="w-50 mt-3 pt-3 pb-1" name="search" type="search" placeholder="Search items by name" style="padding:20sp 25sp;">&nbsp;<input type="submit"  value="Search" class="btn btn-success">-->
+<!--    <a href="{% url 'base:index'%}" class="btn btn-secondary">Reset</a>-->
+
+
+<!--</form>-->
+<br>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">State of Origin</th>
+
+      <th scope="col">Gender</th>
+      <th scope="col">Zipcode</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Address</th>
+      <th scope="col">Created At</th>
+      <th scope="col">NO</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% if data %}
+	{% for i in data %}
+		<tr>
+			<td>{{ i.first_name }}</td>
+			<td>{{ i.last_name }}</td>
+			<td>{{ i.email }}</td>
+			<td>{{ i.state}}</td>
+
+			<td>{{ i.gender }}</td>
+             <td>{{ i.zipcode }} </td>
+              <td>{{ i.phone }} </td>
+              <td>{{ i.address }} </td>
+			<td>{{ i.created_at  }}</td>
+
+
+			<td><a href="{% url 'customer:customer-details' i.id %}">{{ forloop.counter }}</a></td>
+		</tr>
+	{% endfor %}
+
+{% endif %}
+
+
+	  </tbody>
+	</table>
+
+
+{% endblock %}

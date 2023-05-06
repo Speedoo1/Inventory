@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <div class="text-center">
+       <h1>Add Sales Record</h1>
+    </div>
+ <hr>
+<br/>
+
+
+<form method="POST" action="{% url 'sales:add-record'%}">
+    {% csrf_token %}
+     <div class="mb-3">
+    <input type="text" class="form-control" name="stock", placeholder="Enter Stock Name" required>
+
+  </div><br>
+
+     <div class="mb-3">
+    <input type="number" class="form-control" name="Qty", placeholder="Enter Quantity" required>
+
+  </div><br/>
+
+     <div class="mb-3">
+    <input type="number" class="form-control" name="price", placeholder="Enter price" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+    <input type="text" class="form-control" name="brand", placeholder="Enter Brand Name" required>
+
+  </div><br/>
+
+    <div class="mb-3">
+         <h5>Means of Payment</h5>
+    <select name="payment">
+        <option value="Bank">Bank</option>
+        <option value="Cash">Cash</option>
+         <option value="POS">POS</option>
+         <option value="Credit">Credit</option>
+    </select>
+
+
+  </div><br/>
+  <button type="submit" class="btn btn-secondary">Add Record</button>
+   <a href="{% url 'sales:index' %}" class="btn btn-secondary">Back</a>
+
+</form>
+
+</div>
+
+{% endblock %}
+Footer
